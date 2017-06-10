@@ -1,0 +1,23 @@
+.index {
+    &__main-container {
+        height: 100%!important;
+        /* start 'enter' transition */
+        &.ng-enter {
+            transition: 0.75s;
+            /* start with opacity 0 (invisible) */
+            opacity: 0;
+        }
+        /* end 'enter' transition */
+        &.ng-enter-active {
+            /* end with opacity 1 (fade in) */
+            opacity: 1;
+        }
+        &.ng-leave {
+            transition: 0.75s;
+            opacity: 1;
+        }
+        &.ng-leave-active {
+            opacity: 0;
+        }
+    }
+}
