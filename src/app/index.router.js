@@ -28,17 +28,17 @@
             }
           });
 
-        $stateProvider
-            .state('login', {
-                url: '/login',
-                public: true,
-                views: {
-                    '': {
-                        templateUrl: 'app/components/login/login.view.html',
-                        controller: 'LoginController as vm'
-                    }
-                }
-            });
+        // $stateProvider
+        //     .state('login', {
+        //         url: '/login',
+        //         public: true,
+        //         views: {
+        //             '': {
+        //                 templateUrl: 'app/components/login/login.view.html',
+        //                 controller: 'LoginController as vm'
+        //             }
+        //         }
+        //     });
 
         //$urlRouterProvider.otherwise('/login');
 

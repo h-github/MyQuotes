@@ -6,12 +6,18 @@
   angular.module('myQuotes')
     .factory('facebookService', facebookService);
 
-  function facebookService ($q, $window, $timeout) {
+  function facebookService ($q, $window, $rootScope) {
+    var userIsLogedIn = true;
+    var userName = '';
+
     var service = {
       initFacebook: initFacebook,
       injectFacebookSDK: injectFacebookSDK,
-      userIsLogin: userIsLogin,
-      userLogout: userLogout,
+      login:login,
+      logout: logout,
+      isUserLogedin: isUserLogedin,
+      checkUserLoging:checkUserLoging,
+      getUserName:getUserName,
       getMyLastName: getMyLastName
     };
     return service;
@@ -38,6 +44,50 @@
       fjs.parentNode.insertBefore(js, fjs);
     }
 
+
+
+    function isUserLogedin(){
+      FB.getLoginStatus(function(response) {
+        if(response.status === 'connected'){
+          userIsLogedIn = true;
+        }else{
+          userIsLogedIn = false;
+        }
+      });
+    }
+
+    function login(){
+      FB.login(function(response) {
+        if (response.authResponse) {
+          userIsLogedIn = true;
+          $rootScope.$broadcast('user-logged-in', {response : response});
+          FB.api('/me', function(response) {
+            userName = response.name;
+          });
+        } else {
+          console.log('User cancelled login or did not fully authorize.');
+        }
+      });
+    }
+
+    function logout(){
+      FB.logout(function(response) {
+        userIsLogedIn = false;
+        userName = '';
+        $rootScope.$broadcast('user-logged-out', {response : response});
+
+      });
+    }
+
+
+    function checkUserLoging() {
+      return userIsLogedIn;
+    }
+
+    function getUserName(){
+      return userName;
+    }
+
     function getMyLastName() {
       var deferred = $q.defer();
       FB.api('/me', {
@@ -51,24 +101,6 @@
       });
       return deferred.promise;
     }
-
-    function userIsLogin(){
-      var deferred = $q.defer();
-      FB.getLoginStatus(function(response) {
-        if(response.status === 'connected'){
-          deferred.resolve(response);
-        }else{
-          deferred.reject('Error occured');
-        }
-      });
-    }
-
-    function userLogout(){
-      FB.logout(function(response) {
-        // Person is now logged out
-      });
-    }
-
 
   }
 

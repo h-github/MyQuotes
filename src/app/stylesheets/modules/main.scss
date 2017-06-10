@@ -5,6 +5,15 @@
             @media screen and (max-width: 960px) {
                 padding: 16px 16px 0;
             }
+            background: url("../asset/images/bg_rain.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+	        -webkit-background-size: cover;
+	        -moz-background-size: cover;
+	        -o-background-size: cover;
+	        background-size: cover;
+
         }
     }
 }

@@ -4,16 +4,22 @@
     angular.module('myQuotes').controller('MainController', MainController);
 
 
-    function MainController() {
+    function MainController(facebookService,$timeout) {
         var vm = this;
 
         vm.name = 'MainController';
-        vm.activate = activate;
+      vm.checkLogedin = checkLogedin;
+      vm.activate = activate;
       vm.activate();
 
       function activate(){
+
+
       }
 
+      function checkLogedin(){
+
+      }
     }
 
 }());

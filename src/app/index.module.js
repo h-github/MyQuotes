@@ -7,8 +7,8 @@
         'ngMessages',
         'ngCookies',
         'ngAnimate',
+        'ngMdIcons'
 
         //dev
-        'navigation'
     ]);
 }());
