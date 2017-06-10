@@ -91,7 +91,7 @@
     function getMyLastName() {
       var deferred = $q.defer();
       FB.api('/me', {
-        fields: 'last_name'
+        fields: 'first_name'
       }, function(response) {
         if (!response || response.error) {
           deferred.reject('Error occured');

@@ -5,30 +5,37 @@
 
     function NavbarCtrl(facebookService, $state, $timeout,$scope) {
         var vm = this;
-        vm.user = null;
+        vm.userName = '';
         vm.isUserLogedin = false;
         vm.checkUserLoging = checkUserLoging;
         vm.FBLogin = FBLogin;
         vm.FBLogout = FBLogout;
         // vm.userLogout = userLogout;
         vm.activation = activation;
-        vm.getUserName = getUserName;
+        // vm.getUserName = getUserName;
         vm.activation();
 
       $scope.$on('user-logged-in', function(event, args) {
         vm.isUserLogedin = (args.response.status === 'connected');
+
+        facebookService.getMyLastName().then(function(name){
+          vm.userName =name.first_name;
+        });
+        $scope.$apply();
         console.log('User logged in and fully authorize.', args);
       });
 
       $scope.$on('user-logged-out', function(event, args) {
           vm.isUserLogedin = (args.response.status === 'connected');
+        vm.userName = '';
+        $scope.$apply();
         console.log('User logged out and is not authorize.', args);
       });
         function activation() {
           facebookService.initFacebook();
           facebookService.injectFacebookSDK();
           $timeout(function () {
-            facebookService.isUserLogedin();
+            vm.checkUserLoging();
           },1000);
         }
 
@@ -55,9 +62,9 @@
           // },1500);
         }
 
-        function getUserName(){
-          return facebookService.getUserName();
-        }
+        // function getUserName(){
+        //   return facebookService.getUserName();
+        // }
     }
 
 }());
