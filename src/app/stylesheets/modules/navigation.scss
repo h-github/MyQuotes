@@ -1,14 +1,26 @@
-md-sidenav {
-    &.md-sidenav-left {
-        border-right: 1px solid $color-primary-grey-hue-3 !important;
-    }
-}
 
 div {
-    &.navbar {
-        & md-toolbar {
-            padding-left: 20px!important;
-            padding-right: 20px!important;
-        }
+  &.navbar {
+    & md-toolbar {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
     }
+  }
+}
+
+.btn_facebook-box {
+  background-color: steelblue;
+  text-align: left;
+  color: white;
+  line-height: 1;
+
+  &--content {
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.log-in--greeting {
+  color: white;
 }

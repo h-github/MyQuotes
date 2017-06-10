@@ -1,30 +1,30 @@
 /**
  * Created by hamid on 2017-06-08.
  */
-(function(){
+(function () {
   'use strict';
   angular.module('myQuotes')
     .factory('facebookService', facebookService);
 
-  function facebookService ($q, $window, $rootScope) {
-    var userIsLogedIn = true;
+  function facebookService($q, $window, $rootScope) {
+    var userIsLogedIn = false;
     var userName = '';
 
     var service = {
       initFacebook: initFacebook,
       injectFacebookSDK: injectFacebookSDK,
-      login:login,
+      login: login,
       logout: logout,
       isUserLogedin: isUserLogedin,
-      checkUserLoging:checkUserLoging,
-      getUserName:getUserName,
+      checkUserLoging: checkUserLoging,
+      getUserName: getUserName,
       getMyLastName: getMyLastName
     };
     return service;
 
 
-    function initFacebook(){
-      $window.fbAsyncInit = function() {
+    function initFacebook() {
+      $window.fbAsyncInit = function () {
         FB.init({
           appId: '958545794286645',
           status: true,
@@ -35,9 +35,9 @@
       };
     }
 
-    function injectFacebookSDK(){
+    function injectFacebookSDK() {
       var js, fjs = document.getElementsByTagName('script')[0];
-      if (document.getElementById('facebook-jssdk')) {return;}
+      if (document.getElementById('facebook-jssdk')) { return; }
       js = document.createElement('script');
       js.id = 'facebook-jssdk';
       js.src = "//connect.facebook.net/en_US/sdk.js";
@@ -46,22 +46,22 @@
 
 
 
-    function isUserLogedin(){
-      FB.getLoginStatus(function(response) {
-        if(response.status === 'connected'){
+    function isUserLogedin() {
+      FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {
           userIsLogedIn = true;
-        }else{
+        } else {
           userIsLogedIn = false;
         }
       });
     }
 
-    function login(){
-      FB.login(function(response) {
+    function login() {
+      FB.login(function (response) {
         if (response.authResponse) {
           userIsLogedIn = true;
-          $rootScope.$broadcast('user-logged-in', {response : response});
-          FB.api('/me', function(response) {
+          $rootScope.$broadcast('user-logged-in', { response: response });
+          FB.api('/me', function (response) {
             userName = response.name;
           });
         } else {
@@ -70,11 +70,11 @@
       });
     }
 
-    function logout(){
-      FB.logout(function(response) {
+    function logout() {
+      FB.logout(function (response) {
         userIsLogedIn = false;
         userName = '';
-        $rootScope.$broadcast('user-logged-out', {response : response});
+        $rootScope.$broadcast('user-logged-out', { response: response });
 
       });
     }
@@ -84,22 +84,25 @@
       return userIsLogedIn;
     }
 
-    function getUserName(){
+    function getUserName() {
       return userName;
     }
 
     function getMyLastName() {
-      var deferred = $q.defer();
-      FB.api('/me', {
-        fields: 'first_name'
-      }, function(response) {
-        if (!response || response.error) {
-          deferred.reject('Error occured');
-        } else {
-          deferred.resolve(response);
-        }
-      });
-      return deferred.promise;
+      if (FB) {
+        var deferred = $q.defer();
+        FB.api('/me', {
+          fields: 'first_name'
+        }, function (response) {
+          if (!response || response.error) {
+            deferred.reject('Error occured');
+          } else {
+            deferred.resolve(response);
+          }
+        });
+        return deferred.promise;
+      }
+      
     }
 
   }

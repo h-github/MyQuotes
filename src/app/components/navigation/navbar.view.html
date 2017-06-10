@@ -1,14 +1,19 @@
 <md-toolbar class="md-whiteframe-z4">
+  <div flex layout="row">
     <div flex layout="row" layout-align="start center">
-	    <!--<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"></div>-->
-	    <md-button class="md-fab btn_facebook-box" aria-label="Facebook Login" ng-click="vm.FBLogin()" ng-if="!vm.isUserLogedin">
-		    <ng-md-icon class="log-in" icon="facebook-box" style="fill:steelblue" size="32"></ng-md-icon>
-		    <md-tooltip md-direction="right">Facebook Login</md-tooltip>
-	    </md-button>
-	    <md-button class="md-fab btn_facebook-box" aria-label="Facebook Login" ng-click="vm.FBLogout()" ng-if="vm.isUserLogedin">
-		    <ng-md-icon class="log-out" icon="logout" style="fill:steelblue" size="32"></ng-md-icon>
-		    <md-tooltip md-direction="right">Facebook Logout</md-tooltip>
-	    </md-button>
-	    {{vm.userName}}
+      <!--<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"></div>-->
+      <md-button class="btn_facebook-box" aria-label="Facebook Login" ng-click="vm.FBLogin()" ng-if="!vm.isUserLogedin">
+        <ng-md-icon class="log-in" icon="facebook-box" style="fill:white" size="32"></ng-md-icon>
+        <span class="btn_facebook-box--content">Login with Facebook</span>
+      </md-button>
+      <md-button class="btn_facebook-box" aria-label="Facebook Login" ng-click="vm.FBLogout()" ng-if="vm.isUserLogedin">
+        <ng-md-icon class="log-out" icon="logout" style="fill:white" size="32"></ng-md-icon>
+        <span class="btn_facebook-box--content">Logout</span>
+      </md-button>
+
     </div>
+    <div class="log-in--greeting" flex layout="row" layout-align="end center">
+      {{vm.greeting}}
+    </div>
+  </div>
 </md-toolbar>
