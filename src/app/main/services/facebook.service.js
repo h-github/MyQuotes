@@ -6,7 +6,7 @@
   angular.module('myQuotes')
     .factory('facebookService', facebookService);
 
-  function facebookService($q, $window, $rootScope) {
+  function facebookService($q, $window, $rootScope, LocalStorage) {
     var userIsLogedIn = false;
     var userName = '';
 
@@ -61,8 +61,15 @@
         if (response.authResponse) {
           userIsLogedIn = true;
           $rootScope.$broadcast('user-logged-in', { response: response });
-          FB.api('/me', function (response) {
-            userName = response.name;
+          if (response) {
+            LocalStorage.set('accessToken', response.authResponse.accessToken);
+            LocalStorage.set('signedRequest', response.authResponse.signedRequest);
+            LocalStorage.set('expiresIn', response.authResponse.expiresIn);
+            LocalStorage.set('userID', response.authResponse.userID);
+          }
+
+          FB.api('/me', function (user) {
+            userName = user.name;
           });
         } else {
           console.log('User cancelled login or did not fully authorize.');

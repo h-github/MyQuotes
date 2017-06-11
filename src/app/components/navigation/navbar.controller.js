@@ -22,11 +22,13 @@
         vm.greeting = name.first_name ? 'Hi ' + name.first_name + '!' : '';
       });
       console.log('User logged in and fully authorize.', args);
+      $state.go('app.quotes');
     });
 
     $scope.$on('user-logged-out', function (event, args) {
       vm.isUserLogedin = (args.response.status === 'connected');
       vm.greeting = '';
+      $scope.$apply();
       console.log('User logged out and is not authorize.', args);
     });
 
