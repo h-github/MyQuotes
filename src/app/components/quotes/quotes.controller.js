@@ -7,13 +7,13 @@
   angular.module('myQuotes')
     .controller('QuotesController', QuotesController);
 
-  function QuotesController(QuotesService, localStorage){
+  function QuotesController(QuotesService, LocalStorage){
     var vm = this;
     //vm.newQuotes = [];
     //vm.postedQuotes = [];
 
     vm.name = 'QuotesController';
-    vm.userId = localStorage.get('myQuotes.userID');
+    vm.userId = LocalStorage.get('userID');
     vm.getNewQuetes = getNewQuetes;
     vm.postNewQuote = postNewQuote;
     vm.deleteNewQuote = deleteNewQuote;
@@ -33,7 +33,8 @@
     }
 
     function getNewQuetes() {
-      return QuotesService.getNewQuetes(vm.userId);
+      var newQuotes = QuotesService.getNewQuetes(vm.userId);
+      return newQuotes;
     }
 
     function getPostedQuotes() {

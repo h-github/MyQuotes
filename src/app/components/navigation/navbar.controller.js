@@ -19,7 +19,7 @@
       vm.isUserLogedin = (args.response.status === 'connected');
 
       FacebookService.getMyLastName().then(function (name) {
-        vm.greeting = name.first_name ? 'Hi ' + name.first_name + '!' : '';
+        vm.greeting = name.first_name ? 'Hi ' + name.first_name + '!' : '';   // jshint ignore:line
       });
       console.log('User logged in and fully authorize.', args);
       $state.go('app.quotes');
@@ -55,7 +55,7 @@
     // }
 
     function FBLogin() {
-      vm.checkUserLoging()
+      vm.checkUserLoging();
       if (!vm.isUserLogedin) {
         FacebookService.login();
       }
@@ -75,7 +75,7 @@
 
     function getGreetingMessage() {
       FacebookService.getMyLastName().then(function (name) {
-        vm.greeting = name.first_name ? 'Hi ' + name.first_name + '!' : '';
+        vm.greeting = name.first_name ? 'Hi ' + name.first_name + '!' : '';   // jshint ignore:line
       });
      }
   }
