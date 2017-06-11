@@ -13,10 +13,10 @@
     var service = {
       initFacebook: initFacebook,
       injectFacebookSDK: injectFacebookSDK,
-      login: login,
-      logout: logout,
-      isUserLogedin: isUserLogedin,
-      checkUserLoging: checkUserLoging,
+      //login: login,
+      //logout: logout,
+      //isUserLogedin: isUserLogedin,
+      //checkUserLoging: checkUserLoging,
       getUserName: getUserName,
       getMyLastName: getMyLastName
     };
@@ -46,38 +46,38 @@
 
 
 
-    function isUserLogedin() {
-      FB.getLoginStatus(function (response) {
-        if (response.status === 'connected') {
-          userIsLogedIn = true;
-        } else {
-          userIsLogedIn = false;
-        }
-      });
-    }
+    //function isUserLogedin() {
+    //  FB.getLoginStatus(function (response) {
+    //    if (response.status === 'connected') {
+    //      userIsLogedIn = true;
+    //    } else {
+    //      userIsLogedIn = false;
+    //    }
+    //  });
+    //}
 
-    function login() {
-      FB.login(function (response) {
-        if (response.authResponse) {
-          userIsLogedIn = true;
-          $rootScope.$broadcast('user-logged-in', { response: response });
-          FB.api('/me', function (response) {
-            userName = response.name;
-          });
-        } else {
-          console.log('User cancelled login or did not fully authorize.');
-        }
-      });
-    }
+    //function login() {
+    //  FB.login(function (response) {
+    //    if (response.authResponse) {
+    //      userIsLogedIn = true;
+    //      $rootScope.$broadcast('user-logged-in', { response: response });
+    //      FB.api('/me', function (response) {
+    //        userName = response.name;
+    //      });
+    //    } else {
+    //      console.log('User cancelled login or did not fully authorize.');
+    //    }
+    //  });
+    //}
 
-    function logout() {
-      FB.logout(function (response) {
-        userIsLogedIn = false;
-        userName = '';
-        $rootScope.$broadcast('user-logged-out', { response: response });
+    //function logout() {
+    //  FB.logout(function (response) {
+    //    userIsLogedIn = false;
+    //    userName = '';
+    //    $rootScope.$broadcast('user-logged-out', { response: response });
 
-      });
-    }
+    //  });
+    //}
 
 
     function checkUserLoging() {
@@ -85,7 +85,11 @@
     }
 
     function getUserName() {
-      return userName;
+      return userName || '';
+    }
+
+    function setUserName(name) {
+      userName = name;
     }
 
     function getMyLastName() {
@@ -102,9 +106,7 @@
         });
         return deferred.promise;
       }
-      
     }
-
   }
 
 }());
