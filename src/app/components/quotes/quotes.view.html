@@ -5,7 +5,7 @@
         <md-subheader class="md-no-sticky"><h1>New Quotes</h1></md-subheader>
         <md-list-item ng-repeat="quote in vm.getNewQuetes()" class="noright" ng-model="quote">
           <p>{{ quote.content }}</p>
-          <md-button class="md-primary md-raised" md-svg-icon="communication:email" ng-click="vm.postNewQuote($event, quote)" aria-label="Post Quote" class="md-secondary md-hue-3">Post</md-button>
+          <md-button class="md-secondary md-primary md-raised" md-svg-icon="communication:email" ng-click="vm.postNewQuote($event, quote)" aria-label="Post Quote">Post</md-button>
           <md-button class="md-secondary md-accent md-raised" ng-click="vm.deleteNewQuote($event, quote)" aria-label="Chat" md-svg-icon="communication:message">Delete</md-button>
           <md-divider ng-if="!$last"></md-divider>
         </md-list-item>
