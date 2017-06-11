@@ -4,7 +4,7 @@
     angular.module('myQuotes').controller('MainController', MainController);
 
 
-    function MainController(facebookService,$timeout) {
+    function MainController(FacebookService,$timeout) {
         var vm = this;
 
         vm.name = 'MainController';

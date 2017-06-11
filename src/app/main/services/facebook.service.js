@@ -4,11 +4,12 @@
 (function () {
   'use strict';
   angular.module('myQuotes')
-    .factory('facebookService', facebookService);
+    .factory('FacebookService', FacebookService);
 
-  function facebookService($q, $window, $rootScope, LocalStorage) {
+  function FacebookService($q, $window, $rootScope, LocalStorage, $state) {
     var userIsLogedIn = false;
     var userName = '';
+    var userId = '';
 
     var service = {
       initFacebook: initFacebook,
@@ -18,7 +19,8 @@
       isUserLogedin: isUserLogedin,
       checkUserLoging: checkUserLoging,
       getUserName: getUserName,
-      getMyLastName: getMyLastName
+      getMyLastName: getMyLastName,
+      getUserId: getUserId
     };
     return service;
 
@@ -68,6 +70,8 @@
             LocalStorage.set('userID', response.authResponse.userID);
           }
 
+          userId = response.authResponse.userID;
+
           FB.api('/me', function (user) {
             userName = user.name;
           });
@@ -82,7 +86,7 @@
         userIsLogedIn = false;
         userName = '';
         $rootScope.$broadcast('user-logged-out', { response: response });
-
+        $state.go('app');
       });
     }
 
@@ -110,6 +114,10 @@
         return deferred.promise;
       }
       
+    }
+
+    function getUserId() {
+      return userId || '';
     }
 
   }

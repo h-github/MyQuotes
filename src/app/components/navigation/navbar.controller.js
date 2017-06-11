@@ -1,9 +1,9 @@
 (function () {
   'use strict';
   angular.module('myQuotes')
-    .controller('NavbarCtrl', ['facebookService', '$state', '$timeout', '$scope', NavbarCtrl]);
+    .controller('NavbarCtrl', ['FacebookService', '$state', '$timeout', '$scope', NavbarCtrl]);
 
-  function NavbarCtrl(facebookService, $state, $timeout, $scope) {
+  function NavbarCtrl(FacebookService, $state, $timeout, $scope) {
     var vm = this;
     vm.greeting = '';
     vm.isUserLogedin = false;
@@ -18,7 +18,7 @@
     $scope.$on('user-logged-in', function (event, args) {
       vm.isUserLogedin = (args.response.status === 'connected');
 
-      facebookService.getMyLastName().then(function (name) {
+      FacebookService.getMyLastName().then(function (name) {
         vm.greeting = name.first_name ? 'Hi ' + name.first_name + '!' : '';
       });
       console.log('User logged in and fully authorize.', args);
@@ -33,46 +33,48 @@
     });
 
     function activation() {
-      facebookService.initFacebook();
-      facebookService.injectFacebookSDK();
+      FacebookService.initFacebook();
+      FacebookService.injectFacebookSDK();
       $timeout(function () {
+        vm.checkUserLoging();
         vm.getGreetingMessage();
       }, 1500);
     }
 
     function checkUserLoging() {
-      facebookService.isUserLogedin();
-      vm.isUserLogedin = facebookService.checkUserLoging();
+      FacebookService.isUserLogedin();
+      vm.isUserLogedin = FacebookService.checkUserLoging();
       if (vm.isUserLogedin) {
+        $state.go('app.quotes');
       }
     }
 
     // function userLogout() {
-    //   facebookService.userLogout();
+    //   FacebookService.userLogout();
     //     $state.transitionTo('login');
     // }
 
     function FBLogin() {
       vm.checkUserLoging()
       if (!vm.isUserLogedin) {
-        facebookService.login();
+        FacebookService.login();
       }
       // $timeout(function () {
-      //   facebookService.isUserLogedin();
+      //   FacebookService.isUserLogedin();
       // },1500);
     }
 
     function FBLogout() {
       if (vm.isUserLogedin) {
-        facebookService.logout();
+        FacebookService.logout();
       }
       // $timeout(function () {
-      //   facebookService.isUserLogedin();
+      //   FacebookService.isUserLogedin();
       // },1500);
     }
 
     function getGreetingMessage() {
-      facebookService.getMyLastName().then(function (name) {
+      FacebookService.getMyLastName().then(function (name) {
         vm.greeting = name.first_name ? 'Hi ' + name.first_name + '!' : '';
       });
      }
