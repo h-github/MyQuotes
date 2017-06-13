@@ -2,6 +2,7 @@
   &__container {
     &-content {
       padding: 24px 24px 0;
+      overflow-y: scroll;
 
       @media screen and (max-width: 960px) {
         padding: 16px 16px 0;
@@ -25,6 +26,6 @@ md-content {
   }
 
   &.quote_form {
-    background-color: aliceblue;
+    background-color: rgba(250,250,250,0.6);
   }
 }
