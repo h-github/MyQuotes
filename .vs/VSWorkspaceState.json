@@ -1,0 +1,18 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bower_components",
+    "\\bower_components\\moment",
+    "\\bower_components\\moment\\src",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\quotes",
+    "\\src\\app\\main",
+    "\\src\\app\\main\\services",
+    "\\src\\app\\stylesheets",
+    "\\src\\app\\stylesheets\\modules"
+  ],
+  "SelectedNode": "\\bower_components\\moment\\src\\moment.js",
+  "PreviewInSolutionExplorer": false
+}

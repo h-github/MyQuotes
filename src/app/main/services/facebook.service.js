@@ -20,7 +20,8 @@
       checkUserLoging: checkUserLoging,
       getUserName: getUserName,
       getMyLastName: getMyLastName,
-      getUserId: getUserId
+      getUserId: getUserId,
+      postQuote: postQuote
     };
     return service;
 
@@ -120,6 +121,15 @@
       return userId || '';
     }
 
+
+    function postQuote(quote) {
+      FB.ui({
+        method: 'share',
+        display: 'popup',
+        quote: (quote.author ? quote.author + ': ' : '') + quote.content,
+        href: 'http://myquotespro.azurewebsites.net/',
+      }, function (response) { });
+    }
   }
 
 }());
