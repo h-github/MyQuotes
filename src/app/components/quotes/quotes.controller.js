@@ -33,7 +33,7 @@
 
 
     function postNewQuote(quote) {
-      FacebookService.postQuote(quote);
+      QuotesService.postQuote(quote);
     }
 
     function deleteNewQuote(quote) {

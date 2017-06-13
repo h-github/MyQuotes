@@ -161,7 +161,8 @@
       getNewQuetes: getNewQuetes,
       getPostedQuetes: getPostedQuetes,
       deleteQuote: deleteQuote,
-      addNewQuote: addNewQuote
+      addNewQuote: addNewQuote,
+      postQuote: postQuote
     };
 
     return service;
@@ -199,6 +200,18 @@
       newQuote.dateCreated = moment().utc().format();
       newQuote.datePosted = '';
       mockQuotes.push(newQuote);
+    }
+
+    function postQuote(quote) {
+      FacebookService.postQuote(quote);
+      mockQuotes = _.map(mockQuotes, function (q) {
+        if (q.id === quote.id) {
+          q.datePosted = moment().utc().format();
+          return q;
+        } else {
+          return q;
+        }
+      });
     }
   }
 }());

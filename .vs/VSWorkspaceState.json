@@ -1,18 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\bower_components",
-    "\\bower_components\\moment",
-    "\\bower_components\\moment\\src",
     "\\src",
     "\\src\\app",
     "\\src\\app\\components",
     "\\src\\app\\components\\quotes",
     "\\src\\app\\main",
-    "\\src\\app\\main\\services",
     "\\src\\app\\stylesheets",
-    "\\src\\app\\stylesheets\\modules"
+    "\\src\\app\\stylesheets\\modules",
+    "\\src\\asset",
+    "\\src\\asset\\images"
   ],
-  "SelectedNode": "\\bower_components\\moment\\src\\moment.js",
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
