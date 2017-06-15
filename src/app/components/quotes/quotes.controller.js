@@ -5,7 +5,7 @@
   'use strict';
 
   angular.module('myQuotes')
-    .controller('QuotesController', QuotesController);
+    .controller('QuotesController', ['QuotesService', 'LocalStorage', 'FacebookService', QuotesController]);
 
   function QuotesController(QuotesService, LocalStorage, FacebookService) {
     var vm = this;

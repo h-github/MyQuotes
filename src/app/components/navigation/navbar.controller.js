@@ -1,9 +1,9 @@
 (function () {
   'use strict';
   angular.module('myQuotes')
-    .controller('NavbarCtrl', ['FacebookService', '$state', '$timeout', '$scope', NavbarCtrl]);
+    .controller('NavbarCtrl', ['FacebookService', '$state', '$timeout', '$scope','$log', NavbarCtrl]);
 
-  function NavbarCtrl(FacebookService, $state, $timeout, $scope) {
+  function NavbarCtrl(FacebookService, $state, $timeout, $scope, $log) {
     var vm = this;
     vm.greeting = '';
     vm.isUserLogedin = false;
@@ -21,7 +21,7 @@
       FacebookService.getMyLastName().then(function (name) {
         vm.greeting = name.first_name ? 'Hi ' + name.first_name + '!' : '';   // jshint ignore:line
       });
-      console.log('User logged in and fully authorize.', args);
+      //$log.log('User logged in and fully authorize.', args);
       $state.go('app.quotes');
     });
 
@@ -29,7 +29,7 @@
       vm.isUserLogedin = (args.response.status === 'connected');
       vm.greeting = '';
       $scope.$apply();
-      console.log('User logged out and is not authorize.', args);
+      //$log.log('User logged out and is not authorize.', args);
     });
 
     function activation() {
@@ -58,6 +58,7 @@
       vm.checkUserLoging();
       if (!vm.isUserLogedin) {
         FacebookService.login();
+
       }
       // $timeout(function () {
       //   FacebookService.isUserLogedin();

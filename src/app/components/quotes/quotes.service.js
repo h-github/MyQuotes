@@ -190,7 +190,8 @@
     function addNewQuote(newQuote) {
       var sortedQuotes = _.sortBy(mockQuotes, ['id']);
       var last = _.last(sortedQuotes);
-      newQuote.id = ++last.id;
+      newQuote.id = last.id;
+      newQuote.id = newQuote.id + 1;
       newQuote.userId = LocalStorage.get('userID') || '';
       newQuote.dateCreated = moment().utc().format();
       newQuote.datePosted = '';
