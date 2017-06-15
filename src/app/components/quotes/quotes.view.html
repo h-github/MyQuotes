@@ -33,7 +33,7 @@
     <div flex="50">
       <md-content class="quotes_container">
         <md-list>
-          <md-subheader class="md-no-sticky"><h1>New Quotes</h1></md-subheader>
+          <md-subheader class="md-no-sticky"><b>New Quotes</b></md-subheader>
           <md-list-item ng-repeat="quote in vm.getNewQuetes()" class="noright" ng-model="quote">
             <p><b ng-if="!!quote.author">{{quote.author}}:</b> {{quote.content}}</p>
             <md-button class="md-secondary md-primary md-raised" ng-click="vm.postNewQuote(quote)" aria-label="Post Quote">Post</md-button>
@@ -47,7 +47,7 @@
     <div flex="50">
       <md-content class="quotes_container">
         <md-list>
-          <md-subheader class="md-no-sticky"><h1>Posted Quotes</h1></md-subheader>
+          <md-subheader class="md-no-sticky"><b>Posted Quotes</b></md-subheader>
           <md-list-item ng-repeat="quote in vm.getPostedQuotes()" class="noright" ng-model="quote">
             <p><b ng-if="!!quote.author">{{quote.author}}:</b> {{quote.content}}</p>
             <md-divider ng-if="!$last"></md-divider>

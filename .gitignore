@@ -3,11 +3,10 @@
 node_modules
 bower_components
 build
-#.tmp
 
 # Ignore Test reporters
 ###################
 **/test/coverage
-report
-.temp/styles.css
-.temp/main.css
+
+# Visual Studio 2015 cache/options directory
+/.vs

@@ -114,7 +114,7 @@
         });
         return deferred.promise;
       }
-      
+
     }
 
     function getUserId() {
@@ -123,12 +123,16 @@
 
 
     function postQuote(quote) {
+      var deferred = $q.defer();
       FB.ui({
         method: 'share',
         display: 'popup',
         quote: (quote.author ? quote.author + ': ' : '') + quote.content,
-        href: 'http://myquotespro.azurewebsites.net/',
-      }, function (response) { });
+        href: 'http://myquotespro.azurewebsites.net/'
+      }, function (response) {
+        deferred.resolve(response);
+      });
+      return deferred.promise;
     }
   }
 

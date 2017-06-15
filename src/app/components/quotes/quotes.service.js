@@ -198,13 +198,12 @@
     }
 
     function postQuote(quote) {
-      FacebookService.postQuote(quote);
-      mockQuotes = _.map(mockQuotes, function (q) {
-        if (q.id === quote.id) {
-          q.datePosted = moment().utc().format();
-          return q;
-        } else {
-          return q;
+      FacebookService.postQuote(quote).then(function (response) {
+        if (response) {
+          var postedQuote = _.filter(mockQuotes, function (q) {
+            return q.id === quote.id;
+          });
+          postedQuote[0].datePosted = moment().utc().format();
         }
       });
     }
