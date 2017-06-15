@@ -6,11 +6,10 @@
     "\\src\\app\\components",
     "\\src\\app\\components\\quotes",
     "\\src\\app\\main",
-    "\\src\\app\\stylesheets",
-    "\\src\\app\\stylesheets\\modules",
+    "\\src\\app\\main\\services",
     "\\src\\asset",
     "\\src\\asset\\images"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\src\\app\\components\\quotes\\quotes.service.js",
   "PreviewInSolutionExplorer": false
 }

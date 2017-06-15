@@ -1,28 +1,28 @@
 <div flex layout="column">
   <div flex layout="row">
     <md-content flex class="quote_form">
-      <form flex name="vm.quoteForm" class="css-form">
-        <div flex layout="column" layout-gt-md="row" layout-padding>
-          <div flex="20">
+      <form flex name="quoteForm" class="css-form" ng-submit="vm.submitForm(quoteForm)" novalidate>
+        <div flex layout-gt-md="row" layout-padding>
+          <div flex="100" flex-gt-md="20">
             <md-input-container class="md-block">
               <label>Author</label>
               <input ng-model="vm.newQuote.author">
             </md-input-container>
           </div>
-          <div flex="70">
+          <div flex="100" flex-gt-md="65">
             <md-input-container class="md-block">
               <label>Quote</label>
-              <input ng-model="vm.newQuote.content" name="quote" required>
-              <div ng-messages="quoteForm.quote.$error" multiple md-auto-hide="false">
+              <input ng-model="vm.newQuote.content" name="myQuote" required >
+              <div ng-messages="quoteForm.myQuote.$error" md-auto-hide="true">
                 <div ng-message="required">
                   is required!
                 </div>
               </div>
             </md-input-container>
           </div>
-          <div flex="10">
+          <div flex="100" flex-gt-md="15">
             <md-button class="md-secondary md-primary md-raised" ng-click="vm.addNewQuote(vm.newQuote)" aria-label="Post Quote" type="submit">Add</md-button>
-            <md-button class="md-secondary md-accent md-raised" ng-click="vm.cancelNewQuote()" aria-label="Delete Quote" ng-if="vm.activeCancelBtn()">Cancel</md-button>
+            <md-button class="md-secondary md-accent md-raised" ng-click="vm.cancelNewQuote(quoteForm)" aria-label="Delete Quote" ng-if="vm.activeCancelBtn()">Cancel</md-button>
           </div>
         </div>
       </form>

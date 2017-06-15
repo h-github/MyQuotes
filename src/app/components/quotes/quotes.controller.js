@@ -1,13 +1,13 @@
 /**
  * Created by hamid on 2017-06-08.
  */
-(function(){
+(function () {
   'use strict';
 
   angular.module('myQuotes')
     .controller('QuotesController', QuotesController);
 
-  function QuotesController(QuotesService, LocalStorage, FacebookService){
+  function QuotesController(QuotesService, LocalStorage, FacebookService) {
     var vm = this;
 
     function Quote(userId, content, author, dateCreated, datePosted) {
@@ -28,8 +28,9 @@
 
     vm.getPostedQuotes = getPostedQuotes;
     vm.activeCancelBtn = activeCancelBtn;
-    vm.addNewQuote = addNewQuote;
+    //vm.addNewQuote = addNewQuote;
     vm.cancelNewQuote = cancelNewQuote;
+    vm.submitForm = submitForm;
 
 
     function postNewQuote(quote) {
@@ -49,22 +50,31 @@
       return QuotesService.getPostedQuetes(vm.userId);
     }
 
-    function cancelNewQuote() {
+    function cancelNewQuote(form) {
       vm.newQuote = new Quote();
-      vm.quoteForm.$setPristine();
-      vm.quoteForm.$setUntouched();
+        form.$setPristine();
+        form.$setUntouched();
     }
 
     function activeCancelBtn() {
       return !!vm.newQuote.content || !!vm.newQuote.author;
     }
 
-    function addNewQuote(newQuote) {
-      if (!newQuote.content) {
-        return false;
+    //function addNewQuote(newQuote) {
+    //  if (!newQuote.content) {
+    //    return false;
+    //  }
+    //  QuotesService.addNewQuote(newQuote);
+    //  vm.newQuote = new Quote();
+    //}
+
+    function submitForm(form) {
+      if (form.$valid) {
+        QuotesService.addNewQuote(vm.newQuote);
+        vm.newQuote = new Quote();
+        form.$setPristine();
+        form.$setUntouched();
       }
-      QuotesService.addNewQuote(newQuote);
-      vm.newQuote = new Quote();
     }
   }
 

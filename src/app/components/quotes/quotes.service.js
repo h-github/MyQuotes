@@ -155,8 +155,6 @@
       this.datePosted = datePosted;
     }
 
-
-
     var service = {
       getNewQuetes: getNewQuetes,
       getPostedQuetes: getPostedQuetes,
@@ -166,9 +164,6 @@
     };
 
     return service;
-
-
-
 
     function getNewQuetes(userId) {
       if (isTest) {

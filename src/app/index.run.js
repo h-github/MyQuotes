@@ -6,9 +6,9 @@
     .run(runBlock);
 
 
-  function runBlock($rootScope, $location, $cookieStore, $http, $mdSidenav, $mdComponentRegistry) {
+  function runBlock($rootScope, $location, $cookieStore, $http, $mdSidenav, $mdComponentRegistry, $log) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-      console.log('from', fromState.name, 'to', toState.name);
+      $log.log('from', fromState.name, 'to', toState.name);
     });
 
    
